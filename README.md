@@ -50,8 +50,9 @@ Desarrollar una aplicación web utilizando NodeJS y el motor de plantillas EJS. 
      const app = express();
      const port = 3000;
 
-     app.set('view engine', 'ejs');
-     app.use(express.static('public'));
+     app.use(express.static(path.join(__dirname, 'public')))
+        .set('views', path.join(__dirname, 'views'))
+        .set('view engine', 'ejs');
 
      app.get('/', (req, res) => {
          res.render('index');
