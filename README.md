@@ -19,24 +19,30 @@ Desarrollar una aplicación web utilizando NodeJS y el motor de plantillas EJS. 
 
 #### Descripción de la Actividad
 
-1. **Configuración del Entorno (Opción A - Manual)**:
-   - Instala NodeJS y NPM si no lo has hecho ya.
-   - Inicializa un proyecto NodeJS en tu directorio de trabajo.
-   - Instala las dependencias necesarias:
+1. **Configuración del Entorno**:
+   Tienes dos opciones para iniciar el proyecto:
+   
+   **Opción A - Manual**:
+   - Instala NodeJS y NPM si no lo has hecho ya
+   - Inicializa un proyecto NodeJS en tu directorio de trabajo
+   - Instala las dependencias necesarias (express y ejs)
      ```bash
      npm init -y
      npm install express ejs
      ```
 
-   **Configuración del Entorno (Opción B - Express Generator)**:
-   ```bash
-   npm install -g express-generator
-   express --view=ejs nombre-proyecto
-   cd nombre-proyecto
-   npm install
-   ```
+   **Opción B - Express Generator**:
+   - Utiliza express-generator para crear la estructura base del proyecto
+   - Configura EJS como motor de vistas
+    ```bash
+    npm install -g express-generator
+    express --view=ejs nombre-proyecto
+    cd nombre-proyecto
+    npm install
+    ```
 
 2. **Estructura del Proyecto**:
+   Organiza tu proyecto siguiendo esta estructura de directorios:
    ```
    proyecto/
    ├── routes/
@@ -62,119 +68,33 @@ Desarrollar una aplicación web utilizando NodeJS y el motor de plantillas EJS. 
    ```
 
 3. **Configuración del Servidor Express**:
-   ```javascript
-   const express = require('express');
-   const path = require('path');
-   const app = express();
-   const port = 3000;
+   - Configura un servidor básico con Express
+   - Establece EJS como motor de vistas
+   - Configura el directorio de archivos estáticos
+   - Define las rutas principales
 
-   // Importar rutas
-   const indexRouter = require('./routes/index');
-   const servicioRouter = require('./routes/servicio');
-
-   // Configuración de vistas y archivos estáticos
-   app.set('views', path.join(__dirname, 'views'));
-   app.set('view engine', 'ejs');
-   app.use(express.static(path.join(__dirname, 'public')));
-
-   // Usar rutas
-   app.use('/', indexRouter);
-   app.use('/servicio', servicioRouter);
-
-   app.listen(port, () => {
-       console.log(`Servidor corriendo en http://localhost:${port}`);
-   });
-   ```
-
-4. **Configuración de Rutas**:
-   
-   En `routes/index.js`:
-   ```javascript
-   const express = require('express');
-   const router = express.Router();
-
-   router.get('/', (req, res) => {
-       res.render('pages/index');
-   });
-
-   router.get('/contacto', (req, res) => {
-       res.render('pages/contacto');
-   });
-
-   router.get('/galeria', (req, res) => {
-       res.render('pages/galeria');
-   });
-
-   module.exports = router;
-   ```
-
-   En `routes/servicio.js`:
-   ```javascript
-   const express = require('express');
-   const router = express.Router();
-   const servicios = require('../data/servicio.json');
-
-   // Ruta para mostrar un servicio específico
-   router.get('/:id', (req, res) => {
-       const servicio = servicios.servicios.find(s => s.id === req.params.id);
-       if (!servicio) {
-           return res.status(404).send('Servicio no encontrado');
-       }
-       res.render('pages/servicio', { servicio });
-   });
-
-   module.exports = router;
-   ```
+4. **Implementación de Rutas**:
+   Crea las siguientes rutas:
+   - Ruta principal ('/')
+   - Ruta de contacto ('/contacto')
+   - Ruta de galería ('/galeria')
+   - Ruta de servicios con parámetros ('/servicio/:id')
 
 5. **Creación de Plantillas EJS**:
-
-   En `views/pages/servicio.ejs`:
-   ```ejs
-   <%- include('../partials/header') %>
-   <%- include('../partials/navbar') %>
-
-   <section class="service-detail gradient">
-     <div class="container pt-5 mt-5">
-       <div class="row align-items-center justify-content-center">
-         <div class="col-md-8 text-center">
-           <h1 class="servicio-titulo"><%= servicio.titulo %></h1>
-           <div class="servicio-imagen my-5">
-             <img src="<%= servicio.imagen %>" alt="<%= servicio.titulo %>" class="img-fluid">
-           </div>
-           <div class="servicio-descripcion">
-             <p><%= servicio.descripcion %></p>
-           </div>
-           <div class="caracteristicas mt-5">
-             <h3>Características principales</h3>
-             <ul class="list-unstyled servicio-caracteristicas">
-               <% servicio.caracteristicas.forEach(caracteristica => { %>
-                 <li><%= caracteristica %></li>
-               <% }); %>
-             </ul>
-           </div>
-           <div class="mt-5">
-             <a href="/" class="btn btn-outline-light">Volver al inicio</a>
-           </div>
-         </div>
-       </div>
-     </div>
-   </section>
-
-   <%- include('../partials/footer') %>
-   ```
+   Desarrolla las siguientes vistas:
+   - Componentes reutilizables (header, footer, navbar)
+   - Páginas principales (index, contacto, galeria)
+   - Plantilla de detalle de servicio
 
 6. **Manejo de Datos**:
    - Coloca el archivo `servicio.json` en la carpeta `data/`
    - Los datos de los servicios se cargarán dinámicamente desde este archivo
    - Cada servicio debe tener un ID único que coincida con los parámetros de ruta
 
-7. **Enlaces en la Página Principal**:
-   - Asegúrate de que los botones de servicios en la página principal enlacen correctamente:
-   ```html
-   <button onclick="window.location.href='/servicio/desarrollo'" type="button" class="btn btn-outline-warning">
-     Desarrollo
-   </button>
-   ```
+7. **Enlaces y Navegación**:
+   - Implementa la navegación entre páginas
+   - Crea enlaces dinámicos para los servicios
+   - Asegura que todos los enlaces funcionen correctamente
 
 8. **Pruebas y Verificación**:
    - Verifica que las rutas funcionen correctamente:
@@ -186,7 +106,15 @@ Desarrollar una aplicación web utilizando NodeJS y el motor de plantillas EJS. 
    - Verifica que las imágenes y estilos se muestren adecuadamente
 
 9. **Manejo de Errores**:
-   - Implementa una página 404 para servicios no encontrados
-   - Asegúrate de que las rutas inválidas sean manejadas apropiadamente
+   - Implementa una página 404 personalizada
+   - Añade manejo de errores para rutas inválidas
+   - Verifica que los servicios no existentes se manejen adecuadamente
+
+#### Consejos Adicionales:
+- Utiliza la documentación oficial de Express y EJS como referencia
+- Implementa un diseño responsive
+- Mantén un código limpio y bien organizado
+- Comenta tu código apropiadamente
+- Prueba exhaustivamente todas las funcionalidades
 
 ¡Buena suerte y manos al teclado!
