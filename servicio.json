@@ -1,0 +1,43 @@
+{
+  "servicios": [
+    {
+      "id": "desarrollo",
+      "titulo": "Desarrollo Web",
+      "imagen": "/img/coding_.svg",
+      "descripcion": "Desarrollamos sitios web modernos y responsivos utilizando las últimas tecnologías y mejores prácticas del mercado. Nuestro equipo de expertos desarrolladores creará la solución perfecta para tu negocio.",
+      "caracteristicas": [
+        "Diseño responsivo para todos los dispositivos",
+        "Optimización SEO",
+        "Integración con APIs y servicios externos",
+        "Alto rendimiento y velocidad de carga",
+        "Código limpio y mantenible"
+      ]
+    },
+    {
+      "id": "marketing",
+      "titulo": "Marketing Digital",
+      "imagen": "/img/marketing.svg",
+      "descripcion": "Potenciamos tu presencia online con estrategias de marketing digital efectivas. Nuestro equipo de marketing te ayudará a alcanzar a tu audiencia objetivo y aumentar tus conversiones.",
+      "caracteristicas": [
+        "Estrategias de SEO y SEM",
+        "Marketing de contenidos",
+        "Gestión de redes sociales",
+        "Email marketing",
+        "Análisis y reportes de resultados"
+      ]
+    },
+    {
+      "id": "ventas",
+      "titulo": "Gestión de Ventas",
+      "imagen": "/img/revenue_.svg",
+      "descripcion": "Optimizamos tu proceso de ventas con soluciones tecnológicas avanzadas. Implementamos sistemas de gestión que te ayudarán a aumentar tus ventas y mejorar la satisfacción del cliente.",
+      "caracteristicas": [
+        "Sistema de gestión de clientes (CRM)",
+        "Automatización de procesos de venta",
+        "Integración con plataformas de pago",
+        "Seguimiento de métricas en tiempo real",
+        "Soporte técnico continuo"
+      ]
+    }
+  ]
+} 
