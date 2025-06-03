@@ -1,0 +1,21 @@
+<%- include('../partials/header', { title: servicio.titulo }) %>
+<%- include('../partials/navbar') %>
+
+<main class="container my-5">
+  <h1 class="text-center mb-4"><%= servicio.titulo %></h1>
+  
+  <div class="text-center mb-4">
+    <img src="<%= servicio.imagen %>" alt="<%= servicio.titulo %>" class="img-fluid" style="max-height: 300px;">
+  </div>
+
+  <p class="lead text-center"><%= servicio.descripcion %></p>
+
+  <h3 class="mt-5">Características</h3>
+  <ul class="list-group">
+    <% servicio.caracteristicas.forEach(function(item) { %>
+      <li class="list-group-item"><%= item %></li>
+    <% }) %>
+  </ul>
+</main>
+
+<%- include('../partials/footer') %>
