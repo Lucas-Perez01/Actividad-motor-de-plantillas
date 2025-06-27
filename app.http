@@ -1,0 +1,22 @@
+##Peticiones
+
+## Mensaje de Bienvenida
+GET http://localhost:3000/
+
+## Galeria
+
+GET http://localhost:3000/galeria
+
+## Contacto
+GET http://localhost:3000/contacto
+
+## Servicios
+
+## Desarrollo
+GET http://localhost:3000/servicios/desarrollo
+
+## Marketing
+GET http://localhost:3000/servicios/marketing
+
+## Ventas
+GET http://localhost:3000/servicios/ventas
